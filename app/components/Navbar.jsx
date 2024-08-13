@@ -82,7 +82,7 @@ export default function Navbar() {
               Login
             </Button>
           </Link>
-          <Link href="/login">
+          <Link href="/signup">
             <Button className="rounded-full">Sign Up</Button>
           </Link>
         </div>
