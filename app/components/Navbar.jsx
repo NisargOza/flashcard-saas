@@ -22,7 +22,7 @@ import {
 export default function Navbar() {
   return (
     <div className="flex items-center min-w-full w-full fixed justify-center z-[50] mt-4">
-      <div className="flex justify-between md:w-[720px] lg:w-[860px] xl:w-[920px] 2xl:w-[1200px] w-[95%] border dark:border-zinc-900 dark:bg-black bg-opacity-10 relative backdrop-filter backdrop-blur-lg bg-white border-white border-opacity-20 rounded-full p-2 shadow-lg">
+      <div className="flex justify-between xl:w-[1200px] w-[95%] border dark:border-zinc-900 dark:bg-black bg-opacity-10 relative backdrop-filter backdrop-blur-lg bg-white border-white border-opacity-20 rounded-full p-2 shadow-lg">
         <Dialog>
           <SheetTrigger className="min-[825px]:hidden p-2 transition">
             <MenuIcon />
