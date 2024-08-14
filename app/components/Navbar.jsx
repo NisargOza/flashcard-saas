@@ -18,6 +18,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from '@/components/ui/sheet';
+import { GoPlus } from 'react-icons/go';
 
 export default function Navbar() {
   return (
@@ -35,6 +36,13 @@ export default function Navbar() {
               <SheetDescription>Create and study flashcards</SheetDescription>
             </SheetHeader>
             <div className="flex flex-col space-y-3 mt-[1rem] z-[99]">
+              <DialogClose asChild>
+                <Link href="/flashcards">
+                  <Button variant="secondary" className="w-full">
+                    Create flashcards
+                  </Button>
+                </Link>
+              </DialogClose>
               <DialogClose asChild>
                 <Link href="/">
                   <Button variant="outline" className="w-full">
@@ -72,6 +80,11 @@ export default function Navbar() {
           </NavigationMenuList>
         </NavigationMenu>
         <div className="flex items-center gap-2 max-[825px]:hidden">
+          <Link href="/flashcards">
+            <Button variant="secondary" size="icon" className="rounded-full">
+              <GoPlus className="w-5 h-5" />
+            </Button>
+          </Link>
           <Link href="/contact">
             <Button variant="outline" className="rounded-full">
               Contact
