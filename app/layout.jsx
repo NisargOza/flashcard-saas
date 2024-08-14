@@ -1,22 +1,29 @@
-import { Roboto } from "next/font/google";
-import "./globals.css";
+import { Roboto } from 'next/font/google';
+import './globals.css';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 import { ClerkProvider } from "@clerk/nextjs";
 
+
 const roboto = Roboto({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "700"],
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '700'],
 });
 
 export const metadata = {
-  title: "RapidRecall AI",
-  description: "A flashcards app built with Next.js and Tailwind CSS",
+  title: 'Flashcard app',
+  description: 'Flashcard app',
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <ClerkProvider>
-        <body className={roboto.className}>{children}</body>
+        <body className={roboto.className}>
+        <Navbar />
+        {children}
+        <Footer />
+      </body>
       </ClerkProvider>
     </html>
   );
