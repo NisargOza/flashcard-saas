@@ -37,7 +37,7 @@ export default function Navbar() {
             </SheetHeader>
             <div className="flex flex-col space-y-3 mt-[1rem] z-[99]">
               <DialogClose asChild>
-                <Link href="/flashcards">
+                <Link href="/flashcards/create">
                   <Button variant="secondary" className="w-full">
                     Create flashcards
                   </Button>
@@ -80,7 +80,7 @@ export default function Navbar() {
           </NavigationMenuList>
         </NavigationMenu>
         <div className="flex items-center gap-2 max-[825px]:hidden">
-          <Link href="/flashcards">
+          <Link href="/flashcards/create">
             <Button variant="secondary" size="icon" className="rounded-full">
               <GoPlus className="w-5 h-5" />
             </Button>

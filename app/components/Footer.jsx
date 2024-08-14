@@ -6,7 +6,7 @@ import Logo from '@/public/vercel.svg';
 
 export default function Footer() {
   return (
-    <footer className="not-prose border-t mt-32">
+    <footer className="not-prose border-t mt-56">
       <Section>
         <Container className="grid gap-6">
           <div className="grid gap-6">
