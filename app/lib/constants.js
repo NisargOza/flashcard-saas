@@ -1,1 +1,4 @@
-export const GET_FLASHCARDS_ROUTE = `${process.env.NEXT_PUBLIC_BASE_URL}/api/flashcards`;
+export const GET_FLASHCARDS_ROUTE = "/api/flashcards";
+export const SAVE_COLLECTION_ROUTE = "/api/save_collection";
+export const GENERATE_COLLECTION_NAME_ROUTE = "/api/collection_name";
+export const CREATE_FLASHCARDS_URL = "/flashcards/create";
