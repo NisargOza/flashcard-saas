@@ -36,9 +36,9 @@ export default function TopicGetter({ setFlashcards }) {
       <h1 className="text-center text-2xl font-bold md:text-3xl">
         Hi{" "}
         {isLoaded ? (
-          <span className="text-gray-700">{user?.firstName}</span>
+          <span className="text-yellow-500">{user?.firstName}</span>
         ) : (
-          <span className="inline-block w-16 animate-pulse bg-gray-500 text-transparent">
+          <span className="inline-block w-20 animate-pulse bg-[#d3dce3] text-transparent">
             Loading...
           </span>
         )}

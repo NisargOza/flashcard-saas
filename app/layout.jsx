@@ -8,7 +8,7 @@ const roboto = Roboto({
 });
 
 export const metadata = {
-  title: "Flashcards App",
+  title: "RapidRecall AI",
   description: "A flashcards app built with Next.js and Tailwind CSS",
 };
 
