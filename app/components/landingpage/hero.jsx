@@ -29,7 +29,9 @@ const Hero = () => {
             <Button>Get Started</Button>
           </Link>
           {/* Todo: make scroll down to the features and cta */}
-          <Button variant="outline">Learn More</Button>
+          <Link href="/#features">
+            <Button variant="outline">Learn More</Button>
+          </Link>
         </div>
       </Container>
     </Section>
