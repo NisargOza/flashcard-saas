@@ -7,9 +7,9 @@ export default function Flashcards() {
   const [flashcards, setFlashcards] = React.useState([]);
 
   return (
-    <div className="container">
+    <div className="container w-full flex-1">
       <TopicGetter setFlashcards={setFlashcards} />
-      <FlashcardsPreview flashcards={flashcards} />
+      {flashcards.length > 0 && <FlashcardsPreview flashcards={flashcards} />}
     </div>
   );
 }
