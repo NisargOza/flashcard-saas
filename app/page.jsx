@@ -2,8 +2,9 @@
 
 import Image from 'next/image';
 import React from 'react';
-import Hero from './components/landingpage/hero';
-import Feature from './components/landingpage/features';
+import Hero from './components/landingpage/Hero';
+import Feature from './components/landingpage/Features';
+import CTA from './components/landingpage/CTA';
 
 const LandingPage = () => {
   return (
@@ -11,6 +12,7 @@ const LandingPage = () => {
       <Hero />
       <section id="features">
         <Feature />
+        <CTA />
       </section>
     </div>
   );
