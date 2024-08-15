@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "../Buttons";
+import { Button } from "../../../components/ui/button";
 import { DeleteIcon, EditIcon, PlusIcon } from "../Icons";
 import { redirect } from "next/navigation";
 import { CREATE_FLASHCARDS_URL } from "../../lib/constants";
@@ -16,10 +16,12 @@ export default function Cards({ flashcardSets }) {
       <div className="flex flex-col items-center text-lg text-gray-500">
         No flashcard sets found. Create one by clicking the button below.
         <Link
-          className="mt-4 rounded-md bg-blue-100 p-2 shadow-md hover:brightness-110"
+          className="mt-4 h-12 w-12 shadow-md hover:brightness-110"
           href={CREATE_FLASHCARDS_URL}
         >
-          <PlusIcon classes="size-8" />
+          <Button className="h-full w-full">
+            <PlusIcon classes="size-8" />
+          </Button>
         </Link>
       </div>
     );
@@ -33,7 +35,7 @@ export default function Cards({ flashcardSets }) {
         return (
           <div
             key={flashcardSet.id}
-            className="flex w-full flex-col gap-4 rounded-md bg-zinc-100 p-4 shadow-md hover:cursor-pointer hover:brightness-110"
+            className="flex w-full flex-col gap-4 rounded-md bg-gray-200 p-4 shadow-md hover:cursor-pointer hover:brightness-110"
           >
             <h1 className="flex items-start justify-between gap-4 align-middle text-xl font-bold text-gray-600 md:text-2xl">
               <p>{title}</p>
@@ -41,7 +43,7 @@ export default function Cards({ flashcardSets }) {
                 <Button classes="p-2 bg-gray-500 text-white hover:bg-gray-600">
                   <EditIcon />
                 </Button>
-                <Button classes="p-2 bg-red-500 text-white hover:bg-red-600">
+                <Button className="bg-red-500 hover:bg-red-600">
                   <DeleteIcon />
                 </Button>
               </div>

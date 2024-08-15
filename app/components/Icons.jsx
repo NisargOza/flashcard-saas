@@ -24,7 +24,7 @@ export function Spinner({ classes }) {
     <>
       <svg
         aria-hidden="true"
-        className={`w-fit animate-spin fill-blue-600 text-gray-200 dark:text-gray-600 ${classes}`}
+        className={`w-fit animate-spin fill-gray-600 text-gray-200 dark:text-gray-600 ${classes}`}
         viewBox="0 0 100 101"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"

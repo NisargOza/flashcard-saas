@@ -1,18 +1,17 @@
-import { Roboto } from 'next/font/google';
-import './globals.css';
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
+import { Roboto } from "next/font/google";
+import "./globals.css";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 import { ClerkProvider } from "@clerk/nextjs";
 
-
 const roboto = Roboto({
-  subsets: ['latin'],
-  weight: ['300', '400', '500', '700'],
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "700"],
 });
 
 export const metadata = {
-  title: 'Flashcard app',
-  description: 'Flashcard app',
+  title: "Flashcard app",
+  description: "Flashcard app",
 };
 
 export default function RootLayout({ children }) {
@@ -20,10 +19,10 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <ClerkProvider>
         <body className={roboto.className}>
-        <Navbar />
-        {children}
-        <Footer />
-      </body>
+          <Navbar />
+          {children}
+          <Footer />
+        </body>
       </ClerkProvider>
     </html>
   );

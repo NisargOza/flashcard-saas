@@ -2,10 +2,10 @@
 module.exports = {
   darkMode: ["class"],
   content: [
-    './pages/**/*.{js,jsx}',
-    './components/**/*.{js,jsx}',
-    './app/**/*.{js,jsx}',
-    './src/**/*.{js,jsx}',
+    "./pages/**/*.{js,jsx}",
+    "./components/**/*.{js,jsx}",
+    "./app/**/*.{js,jsx}",
+    "./src/**/*.{js,jsx}",
   ],
   prefix: "",
   theme: {
@@ -71,7 +71,21 @@ module.exports = {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },
+      keyframes: {
+        shimmer: {
+          "100%": { transform: "translateX(100%)" },
+        },
+        wave: {
+          "0%": { transform: "translateX(-100%)" },
+          "50%": { transform: "translateX(100%)" },
+          "100%": { transform: "translateX(-100%)" },
+        },
+      },
+      animation: {
+        shimmer: "shimmer 2s infinite linear",
+        wave: "wave 2s infinite linear",
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],
-}
+};

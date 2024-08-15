@@ -7,3 +7,13 @@
 //     </div>
 //   );
 // }
+
+export function RectangleSkeleton({ classes }) {
+  return (
+    <span
+      className={`inline-block animate-pulse bg-[#d3dce3] text-transparent ${classes}`}
+    >
+      Loading...
+    </span>
+  );
+}

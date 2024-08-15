@@ -1,9 +1,11 @@
 "use client";
 import React, { useState } from "react";
-import { Button, LoadingButton } from "../Buttons";
+import { Button } from "../../../components/ui/button";
 import Input from "../Input";
 import { generateFlashcards } from "../../lib/http";
 import { useUser } from "@clerk/nextjs";
+import { RectangleSkeleton } from "../Skeletons";
+import { Spinner } from "../Icons";
 
 export default function TopicGetter({ setFlashcards }) {
   const [topic, setTopic] = useState("");
@@ -38,9 +40,7 @@ export default function TopicGetter({ setFlashcards }) {
         {isLoaded ? (
           <span className="text-yellow-500">{user?.firstName}</span>
         ) : (
-          <span className="inline-block w-20 animate-pulse bg-[#d3dce3] text-transparent">
-            Loading...
-          </span>
+          <RectangleSkeleton classes="w-20" />
         )}
         😄! What do you want to study?
       </h1>
@@ -58,7 +58,7 @@ export default function TopicGetter({ setFlashcards }) {
           Continue
         </Button>
       ) : (
-        <LoadingButton classes="size-6" />
+        <Spinner classes="size-6" />
       )}
     </form>
   );
