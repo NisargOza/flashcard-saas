@@ -1,27 +1,27 @@
-"use client";
+'use client';
 
-import { cn } from "@/app/lib/utils";
-import { MenuIcon, User } from "lucide-react";
-import Link from "next/link";
-import * as React from "react";
-import { Dialog, DialogClose } from "@/app/components/ui/dialog";
-import { Button } from "../components/ui/button";
+import { cn } from '@/app/lib/utils';
+import { MenuIcon, User } from 'lucide-react';
+import Link from 'next/link';
+import * as React from 'react';
+import { Dialog, DialogClose } from '@/app/components/ui/dialog';
+import { Button } from '../components/ui/button';
 import {
   NavigationMenu,
   NavigationMenuLink,
   NavigationMenuList,
-} from "@/app/components/ui/navigation-menu";
+} from '@/app/components/ui/navigation-menu';
 import {
   SheetContent,
   SheetDescription,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from "@/app/components/ui/sheet";
-import { GoPlus } from "react-icons/go";
-import { useUser, UserButton } from "@clerk/nextjs";
-import Image from "next/image";
-import { RectangleSkeleton } from "./Skeletons";
+} from '@/app/components/ui/sheet';
+import { GoPlus } from 'react-icons/go';
+import { useUser, UserButton } from '@clerk/nextjs';
+import Image from 'next/image';
+import { RectangleSkeleton } from './Skeletons';
 
 export default function Navbar() {
   const { user, isLoaded } = useUser();
@@ -37,17 +37,17 @@ export default function Navbar() {
           </SheetTrigger>
           <SheetContent side="left">
             <SheetHeader>
-              <SheetTitle className="flex flex-col">
-                <Link href="/" className="pl-3">
+              <SheetTitle className="flex flex-col items-center">
+                <Link href="/">
                   <h3 className="flex flex-row items-center text-xl font-medium">
                     <Image
                       src="/images/logo.png"
                       alt="logo"
                       width="512"
                       height="512"
-                      className="h-12 w-12 rounded-full"
+                      className="h-10 w-10 rounded-full"
                     />
-                    <span className="ml-3">Flashcard App</span>
+                    <span className="ml-3">Discent</span>
                   </h3>
                 </Link>
               </SheetTitle>
@@ -60,16 +60,16 @@ export default function Navbar() {
         </Dialog>
         <NavigationMenu>
           <NavigationMenuList className="max-[825px]:hidden">
-            <Link href="/" className="pl-3">
+            <Link href="/">
               <h3 className="flex flex-row items-center text-xl font-medium">
                 <Image
                   src="/images/logo.png"
                   alt="logo"
                   width="512"
                   height="512"
-                  className="h-12 w-12 rounded-full"
+                  className="h-10 w-10 rounded-full"
                 />
-                <span className="ml-3">Flashcard App</span>
+                <span className="ml-3">Discent</span>
               </h3>
             </Link>
           </NavigationMenuList>
@@ -88,7 +88,7 @@ const ListItem = React.forwardRef(
           <a
             ref={ref}
             className={cn(
-              "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
+              'block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground',
               className
             )}
             {...props}
@@ -103,7 +103,7 @@ const ListItem = React.forwardRef(
     );
   }
 );
-ListItem.displayName = "ListItem";
+ListItem.displayName = 'ListItem';
 
 export function ButtonGroupDesktop({ user, isLoaded }) {
   if (!isLoaded) {
@@ -129,7 +129,7 @@ export function ButtonGroupDesktop({ user, isLoaded }) {
         <UserButton
           appearance={{
             elements: {
-              userButtonAvatarBox: "size-10",
+              userButtonAvatarBox: 'size-10',
             },
           }}
         />
