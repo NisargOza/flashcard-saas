@@ -124,6 +124,11 @@ export function ButtonGroupDesktop({ user, isLoaded }) {
               Library
             </Button>
           </Link>
+          <Link href="/pricing">
+            <Button variant="" className="rounded-full">
+              Upgrade
+            </Button>
+          </Link>
         </div>
 
         <UserButton
@@ -193,9 +198,16 @@ export function ButtonGroupsMobile({ user, isLoaded }) {
   return (
     <>
       <DialogClose asChild>
+        <Link href="/flashcards/create" className="mb-4">
+          <Button variant="outline" className="w-full">
+            Home
+          </Button>
+        </Link>
+      </DialogClose>
+      <DialogClose asChild>
         <Link href="/flashcards/create">
           <Button variant="secondary" className="w-full">
-            Create flashcards
+            Create Flashcards
           </Button>
         </Link>
       </DialogClose>
@@ -204,6 +216,11 @@ export function ButtonGroupsMobile({ user, isLoaded }) {
           <Button variant="outline" className="w-full">
             Library
           </Button>
+        </Link>
+      </DialogClose>
+      <DialogClose asChild>
+        <Link href="/pricing">
+          <Button className="w-full">Upgrade</Button>
         </Link>
       </DialogClose>
     </>
