@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { Button } from "../../../components/ui/button";
+import { Button } from "../ui/button";
 import CollectionGetter from "./Collection";
 import Modal from "../Modal";
 import FlashcardsGrid from "./FlashcardsGrid";

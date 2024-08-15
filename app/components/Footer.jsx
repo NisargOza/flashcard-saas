@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Section, Container } from "@/components/craft";
+import { Section, Container } from "@/app/components/ui/craft";
 
 export default function Footer() {
   return (

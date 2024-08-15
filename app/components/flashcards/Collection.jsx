@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { InputIcon } from "../Input";
-import { Button } from "../../../components/ui/button";
+import { Button } from "../ui/button";
 import { Spark, Spinner } from "../Icons";
 import { generateCollectionName } from "../../lib/http";
 import { collectionExists, saveCollection } from "../../lib/firebase";

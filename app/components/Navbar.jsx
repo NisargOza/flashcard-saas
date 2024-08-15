@@ -1,23 +1,23 @@
 "use client";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/app/lib/utils";
 import { MenuIcon, User } from "lucide-react";
 import Link from "next/link";
 import * as React from "react";
-import { Dialog, DialogClose } from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
+import { Dialog, DialogClose } from "@/app/components/ui/dialog";
+import { Button } from "../components/ui/button";
 import {
   NavigationMenu,
   NavigationMenuLink,
   NavigationMenuList,
-} from "@/components/ui/navigation-menu";
+} from "@/app/components/ui/navigation-menu";
 import {
   SheetContent,
   SheetDescription,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from "@/components/ui/sheet";
+} from "@/app/components/ui/sheet";
 import { GoPlus } from "react-icons/go";
 import { useUser, UserButton } from "@clerk/nextjs";
 import Image from "next/image";

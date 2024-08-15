@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "../../../components/ui/button";
+import { Button } from "../ui/button";
 import { DeleteIcon, EditIcon, PlusIcon } from "../Icons";
 import { redirect } from "next/navigation";
 import { CREATE_FLASHCARDS_URL } from "../../lib/constants";

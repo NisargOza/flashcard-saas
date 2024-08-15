@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { Button } from "../../../components/ui/button";
+import { Button } from "../ui/button";
 import Input from "../Input";
 import { generateFlashcards } from "../../lib/http";
 import { useUser } from "@clerk/nextjs";
