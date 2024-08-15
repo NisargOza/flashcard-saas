@@ -5,9 +5,13 @@ import {
   getDoc,
   setDoc,
   getDocs,
+  deleteDoc,
   writeBatch,
 } from "firebase/firestore";
 import { db } from "../../firebase";
+import { revalidatePath } from "next/cache";
+import { VIEW_FLASHCARD_SETS_URL } from "./constants";
+import { redirect } from "next/navigation";
 
 // Check if a collection of flashcards exists for a user
 export async function collectionExists(email, collectionName) {
@@ -29,6 +33,17 @@ export async function collectionExists(email, collectionName) {
     console.error("Error checking if collection exists:", error);
     throw new Error("Error checking if collection exists");
   }
+}
+
+// Get a collection by id
+export async function getCollection(email, collectionName) {
+  const userDocRef = doc(collection(db, "users"), email);
+  const setDocRef = doc(
+    collection(userDocRef, "flashcardSets"),
+    collectionName
+  );
+
+  return getDoc(setDocRef);
 }
 
 // Save a collection of flashcards for a user
@@ -63,6 +78,7 @@ export async function saveCollection(email, collectionName, flashcards) {
 
     await batch.commit();
 
+    revalidatePath(VIEW_FLASHCARD_SETS_URL);
     return { success: true };
   } catch (error) {
     console.error("Error saving flashcards:", error);
@@ -101,4 +117,36 @@ export async function getFlashcardSets(email) {
 }
 
 // Delete a flashcard set from a user
-export async function deleteFlashcardSet(email, flashcardSetID) {}
+export async function deleteFlashcardSet(email, flashcardSetID) {
+  try {
+    const userDocRef = doc(collection(db, "users"), email);
+    const userDocSnap = await getDoc(userDocRef);
+
+    if (!userDocSnap.exists()) {
+      throw new Error("User does not exist");
+    }
+
+    const flashcardSetRef = doc(
+      collection(userDocRef, "flashcardSets"),
+      flashcardSetID
+    );
+
+    const batch = writeBatch(db);
+
+    batch.delete(flashcardSetRef);
+
+    const userData = userDocSnap.data();
+    const updatedSets = (userData.flashcardSets || []).filter(
+      (set) => set.name !== flashcardSetID
+    );
+
+    batch.update(userDocRef, { flashcardSets: updatedSets });
+
+    await batch.commit();
+
+    revalidatePath(VIEW_FLASHCARD_SETS_URL);
+  } catch (error) {
+    console.error("Error deleting flashcard set: ", error);
+    throw new Error("Error deleting flashcard set");
+  }
+}

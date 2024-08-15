@@ -28,7 +28,7 @@ export default function Footer() {
             <p className="mr-2">Created by: </p>
             <p>
               <a
-                href="/"
+                href="https://www.linkedin.com/in/lhkhoi95/"
                 className="underline hover:text-slate-700"
                 target="_blank"
               >

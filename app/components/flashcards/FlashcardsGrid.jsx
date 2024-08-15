@@ -1,5 +1,5 @@
 import React from "react";
-import Flashcard from "./Flashcard";
+import FlashcardHorizontalRotation from "./Flashcard";
 
 export default function FlashcardsGrid({ flashcards }) {
   return (
@@ -7,7 +7,10 @@ export default function FlashcardsGrid({ flashcards }) {
       {flashcards.map((flashcard, index) => {
         return (
           <div key={index} className="h-56">
-            <Flashcard front={flashcard.front} back={flashcard.back} />
+            <FlashcardHorizontalRotation
+              front={flashcard.front}
+              back={flashcard.back}
+            />
           </div>
         );
       })}
