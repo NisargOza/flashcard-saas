@@ -5,6 +5,7 @@ import {
   getDoc,
   setDoc,
   getDocs,
+  deleteDoc,
   writeBatch,
 } from "firebase/firestore";
 import { db } from "../../firebase";
@@ -101,4 +102,35 @@ export async function getFlashcardSets(email) {
 }
 
 // Delete a flashcard set from a user
-export async function deleteFlashcardSet(email, flashcardSetID) {}
+export async function deleteFlashcardSet(email, flashcardSetID) {
+  try {
+    console.log(`attempting to delete flashcard set: ${flashcardSetID} for user: ${email}`);
+    const userDocRef = doc(collection(db, "users"), email);
+    const userDocSnap = await getDoc(userDocRef);
+
+    if (!userDocSnap.exists()) {
+      throw new Error("User does not exist")
+    }
+
+    const flashcardSetRef = doc(
+      collection(userDocRef, "flashcardSets"),
+      flashcardSetID
+    );
+
+    const batch = writeBatch(db);
+
+    batch.delete(flashcardSetRef);
+
+    const userData = userDocSnap.data();
+    const updatedSets = (userData.flashcardSets || []).filter((set) => set.name !== flashcardSetID);
+
+    batch.update(userDocRef, {flashcardSets: updatedSets});
+
+    await batch.commit();
+    return {success: true};
+  } catch (error) {
+    console.error("Error deleting flashcard set: ", error);
+    throw new Error("Error deleting flashcard set");
+  }
+
+}
