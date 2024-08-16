@@ -1,13 +1,13 @@
-'use client';
-import { useState } from 'react';
-import { Container } from '../ui/craft';
-import { titleCase } from '@/app/lib/helpers';
-import { Card, CardContent, CardHeader } from '../ui/card';
-import { Button } from '../ui/button';
-import { useRouter } from 'next/navigation';
-import { VIEW_FLASHCARD_SETS_URL } from '@/app/lib/constants';
-import { deleteFlashcardSet, saveCollection } from '@/app/lib/firebase';
-import { useUser } from '@clerk/nextjs';
+"use client";
+import { useState } from "react";
+import { Container } from "../ui/craft";
+import { titleCase } from "@/app/lib/helpers";
+import { Card, CardContent, CardHeader } from "../ui/card";
+import { Button } from "../ui/button";
+import { useRouter } from "next/navigation";
+import { VIEW_FLASHCARD_SETS_URL } from "@/app/lib/constants";
+import { deleteFlashcardSet, saveCollection } from "@/app/lib/firebase";
+import { useUser } from "@clerk/nextjs";
 
 export default function EditCards({ title, flashcards }) {
   const router = useRouter();
@@ -35,7 +35,7 @@ export default function EditCards({ title, flashcards }) {
   }
 
   function handleCancel() {
-    const url = VIEW_FLASHCARD_SETS_URL + '/' + title;
+    const url = VIEW_FLASHCARD_SETS_URL + "/" + title;
     router.push(url);
   }
 
@@ -43,7 +43,7 @@ export default function EditCards({ title, flashcards }) {
     <Card key={index} className="p-4">
       <CardHeader className="text-xl font-bold">
         {index + 1}
-        {'. '}
+        {". "}
       </CardHeader>
       <CardContent>
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
@@ -61,7 +61,7 @@ export default function EditCards({ title, flashcards }) {
                 });
               }}
               onInput={(e) => {
-                e.target.style.height = 'auto';
+                e.target.style.height = "auto";
                 e.target.style.height = `${e.target.scrollHeight}px`;
               }}
             />
@@ -82,7 +82,7 @@ export default function EditCards({ title, flashcards }) {
                 });
               }}
               onInput={(e) => {
-                e.target.style.height = 'auto';
+                e.target.style.height = "auto";
                 e.target.style.height = `${e.target.scrollHeight}px`;
               }}
             />
@@ -92,8 +92,6 @@ export default function EditCards({ title, flashcards }) {
       </CardContent>
     </Card>
   ));
-
-  console.log(flashcards);
 
   return (
     <Container className="min-h-screen">
@@ -126,11 +124,11 @@ export default function EditCards({ title, flashcards }) {
 
           {/* Add card button */}
           <Button
-            className="mt-8 text-xl px-6 py-5 font-normal mx-auto border border-slate-400 hover:bg-slate-200"
+            className="mx-auto mt-8 border border-slate-400 px-6 py-5 text-xl font-normal hover:bg-slate-200"
             variant="secondary"
             onClick={() => {
               const newFlashcards = [...flashcardSet.flashcards];
-              newFlashcards.push({ front: '', back: '' });
+              newFlashcards.push({ front: "", back: "" });
               setFlashcardSet({ ...flashcardSet, flashcards: newFlashcards });
             }}
           >

@@ -1,25 +1,25 @@
-'use client';
-import React from 'react';
-import { Container } from '../ui/craft';
-import { titleCase } from '@/app/lib/helpers';
-import { FlashcardVerticalRotation } from './Flashcard';
-import EmblaCarousel from '../carousel/EmblaCarousel';
-import FlashcardsGrid from './FlashcardsGrid';
-import { Button } from '../ui/button';
-import { Pencil, Trash } from 'lucide-react';
-import Link from 'next/link';
-import { VIEW_FLASHCARD_SETS_URL } from '@/app/lib/constants';
-import { deleteFlashcardSet } from '@/app/lib/firebase';
-import { useUser } from '@clerk/nextjs';
-import { useRouter } from 'next/navigation';
+"use client";
+import React from "react";
+import { Container } from "../ui/craft";
+import { titleCase } from "@/app/lib/helpers";
+import { FlashcardVerticalRotation } from "./Flashcard";
+import EmblaCarousel from "../carousel/EmblaCarousel";
+import FlashcardsGrid from "./FlashcardsGrid";
+import { Button } from "../ui/button";
+import { Pencil, Trash } from "lucide-react";
+import Link from "next/link";
+import { VIEW_FLASHCARD_SETS_URL } from "@/app/lib/constants";
+import { deleteFlashcardSet } from "@/app/lib/firebase";
+import { useUser } from "@clerk/nextjs";
+import { useRouter } from "next/navigation";
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from '../ui/tooltip';
+} from "../ui/tooltip";
 
-const OPTIONS = { axis: 'y' };
+const OPTIONS = { axis: "y" };
 
 export default function Practice({ title, flashcards }) {
   const [isDeleting, setIsDeleting] = React.useState(false);
@@ -47,7 +47,7 @@ export default function Practice({ title, flashcards }) {
         <div className="flex flex-row gap-2">
           <TooltipProvider>
             <Tooltip>
-              <TooltipTrigger>
+              <TooltipTrigger asChild>
                 <Link
                   className="flex items-center rounded-md bg-gray-700 p-2 align-middle text-white hover:bg-gray-800"
                   href={`${VIEW_FLASHCARD_SETS_URL}/edit/${title}`}
@@ -63,7 +63,7 @@ export default function Practice({ title, flashcards }) {
 
           <TooltipProvider>
             <Tooltip>
-              <TooltipTrigger>
+              <TooltipTrigger asChild>
                 <Button
                   disabled={isDeleting}
                   variant="destructive"
