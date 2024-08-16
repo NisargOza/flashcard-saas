@@ -1,13 +1,13 @@
-"use client";
-import { useState } from "react";
-import { Container } from "../ui/craft";
-import { titleCase } from "@/app/lib/helpers";
-import { Card, CardContent, CardHeader } from "../ui/card";
-import { Button } from "../ui/button";
-import { useRouter } from "next/navigation";
-import { VIEW_FLASHCARD_SETS_URL } from "@/app/lib/constants";
-import { deleteFlashcardSet, saveCollection } from "@/app/lib/firebase";
-import { useUser } from "@clerk/nextjs";
+'use client';
+import { useState } from 'react';
+import { Container } from '../ui/craft';
+import { titleCase } from '@/app/lib/helpers';
+import { Card, CardContent, CardHeader } from '../ui/card';
+import { Button } from '../ui/button';
+import { useRouter } from 'next/navigation';
+import { VIEW_FLASHCARD_SETS_URL } from '@/app/lib/constants';
+import { deleteFlashcardSet, saveCollection } from '@/app/lib/firebase';
+import { useUser } from '@clerk/nextjs';
 
 export default function EditCards({ title, flashcards }) {
   const router = useRouter();
@@ -35,9 +35,65 @@ export default function EditCards({ title, flashcards }) {
   }
 
   function handleCancel() {
-    const url = VIEW_FLASHCARD_SETS_URL + "/" + title;
+    const url = VIEW_FLASHCARD_SETS_URL + '/' + title;
     router.push(url);
   }
+
+  const flashcardsElements = flashcardSet.flashcards.map((flashcard, index) => (
+    <Card key={index} className="p-4">
+      <CardHeader className="text-xl font-bold">
+        {index + 1}
+        {'. '}
+      </CardHeader>
+      <CardContent>
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+          <div className="text-left text-lg">
+            <textarea
+              className="w-full resize-none overflow-hidden rounded-none border-b-2 border-gray-700"
+              value={flashcard.front}
+              rows={1}
+              onChange={(e) => {
+                const newFlashcards = [...flashcardSet.flashcards];
+                newFlashcards[index].front = e.target.value;
+                setFlashcardSet({
+                  ...flashcardSet,
+                  flashcards: newFlashcards,
+                });
+              }}
+              onInput={(e) => {
+                e.target.style.height = 'auto';
+                e.target.style.height = `${e.target.scrollHeight}px`;
+              }}
+            />
+            <span className="text-sm font-bold">Front</span>
+          </div>
+
+          <div className="text-left text-lg">
+            <textarea
+              className="w-full resize-y rounded-none border-b-2 border-gray-700 p-2"
+              value={flashcard.back}
+              rows={3}
+              onChange={(e) => {
+                const newFlashcards = [...flashcardSet.flashcards];
+                newFlashcards[index].back = e.target.value;
+                setFlashcardSet({
+                  ...flashcardSet,
+                  flashcards: newFlashcards,
+                });
+              }}
+              onInput={(e) => {
+                e.target.style.height = 'auto';
+                e.target.style.height = `${e.target.scrollHeight}px`;
+              }}
+            />
+            <span className="text-sm font-bold">Back</span>
+          </div>
+        </div>
+      </CardContent>
+    </Card>
+  ));
+
+  console.log(flashcards);
 
   return (
     <Container className="min-h-screen">
@@ -66,59 +122,28 @@ export default function EditCards({ title, flashcards }) {
           </div>
 
           {/* Flashcards */}
-          {flashcardSet.flashcards.map((flashcard, index) => (
-            <Card key={index} className="p-4">
-              <CardHeader className="text-xl font-bold">
-                {index + 1}
-                {". "}
-              </CardHeader>
-              <CardContent>
-                <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-                  <div className="text-left text-lg">
-                    <textarea
-                      className="w-full resize-none overflow-hidden rounded-none border-b-2 border-gray-700"
-                      value={flashcard.front}
-                      rows={1}
-                      onChange={(e) => {
-                        const newFlashcards = [...flashcardSet.flashcards];
-                        newFlashcards[index].front = e.target.value;
-                        setFlashcardSet({
-                          ...flashcardSet,
-                          flashcards: newFlashcards,
-                        });
-                      }}
-                      onInput={(e) => {
-                        e.target.style.height = "auto";
-                        e.target.style.height = `${e.target.scrollHeight}px`;
-                      }}
-                    />
-                    <span className="text-sm font-bold">Front</span>
-                  </div>
+          {flashcardsElements}
 
-                  <div className="text-left text-lg">
-                    <textarea
-                      className="w-full resize-y rounded-none border-b-2 border-gray-700 p-2"
-                      value={flashcard.back}
-                      rows={3}
-                      onChange={(e) => {
-                        const newFlashcards = [...flashcardSet.flashcards];
-                        newFlashcards[index].back = e.target.value;
-                        setFlashcardSet({
-                          ...flashcardSet,
-                          flashcards: newFlashcards,
-                        });
-                      }}
-                      onInput={(e) => {
-                        e.target.style.height = "auto";
-                        e.target.style.height = `${e.target.scrollHeight}px`;
-                      }}
-                    />
-                    <span className="text-sm font-bold">Back</span>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
+          {/* Add card button */}
+          <Button
+            className="mt-8 text-xl px-6 py-5 font-normal mx-auto border border-slate-400 hover:bg-slate-200"
+            variant="secondary"
+            onClick={() => {
+              const newFlashcards = [...flashcardSet.flashcards];
+              newFlashcards.push({ front: '', back: '' });
+              setFlashcardSet({ ...flashcardSet, flashcards: newFlashcards });
+            }}
+          >
+            Add new card
+          </Button>
+        </div>
+        <div className="mt-12 flex w-full items-center justify-end gap-2 text-end">
+          <Button onClick={handleCancel} variant="outline">
+            Cancel
+          </Button>
+          <Button onClick={handleSave} disabled={isSaving}>
+            Save
+          </Button>
         </div>
       </div>
     </Container>
