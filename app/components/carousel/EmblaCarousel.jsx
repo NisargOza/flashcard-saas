@@ -59,6 +59,7 @@ const EmblaCarousel = (props) => {
             src={`${imageUrl}?${imageKey}`}
             className="absolute left-1/2 top-1/2 z-50 h-64 w-64 -translate-x-1/2 -translate-y-1/2 rounded-full bg-inherit md:h-80 md:w-80"
             alt="status"
+            unoptimized
             width="512"
             height="512"
           />
