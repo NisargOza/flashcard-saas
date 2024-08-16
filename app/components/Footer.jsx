@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Section, Container } from "@/app/components/ui/craft";
+import { LOGO_IMAGE_URL } from "../lib/constants";
 
 export default function Footer() {
   return (
@@ -11,7 +12,7 @@ export default function Footer() {
             <Link href="/">
               {/* Replace logo */}
               <Image
-                src="/images/logo.png"
+                src={LOGO_IMAGE_URL}
                 alt="Logo"
                 width={100}
                 height={100}

@@ -1,15 +1,25 @@
 import React from "react";
+import { cn } from "../lib/utils";
 
-export default function Input({ label, id, error, classes, ...props }) {
+export default function Input({
+  label,
+  id,
+  error,
+  center,
+  className,
+  ...props
+}) {
   return (
-    <div className="w-full text-center">
+    <div
+      className={`mx-4 w-full md:mx-0 ${center ? "text-center" : "text-left "}`}
+    >
       {label && (
         <label className="mr-4" htmlFor={id}>
           {label}
         </label>
       )}
       <input
-        className={`rounded-lg border-2 border-gray-300 focus:border-blue-300 focus:outline-none ${classes}`}
+        className={cn("rounded-lg focus:outline-none", className)}
         id={id}
         {...props} // Spread the props like type, name, value, etc.
       />

@@ -1,8 +1,7 @@
 import { getCollection } from "@/app/lib/firebase";
-import React from "react";
 import { currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
-import Practice from "@/app/components/flashcards/Practice";
+import EditCards from "@/app/components/flashcards/EditCards";
 
 export default async function Page({ params }) {
   const user = await currentUser();
@@ -18,5 +17,5 @@ export default async function Page({ params }) {
 
   const data = flashcards.data().flashcards;
 
-  return <Practice title={id} flashcards={data} />;
+  return <EditCards title={id} flashcards={data} />;
 }

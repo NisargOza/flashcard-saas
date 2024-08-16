@@ -6,6 +6,7 @@ import { generateFlashcards } from "../../lib/http";
 import { useUser } from "@clerk/nextjs";
 import { RectangleSkeleton } from "../Skeletons";
 import { Spinner } from "../Icons";
+import { Card } from "../ui/card";
 
 export default function TopicGetter({ setFlashcards }) {
   const [topic, setTopic] = useState("");
@@ -31,35 +32,38 @@ export default function TopicGetter({ setFlashcards }) {
   };
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="my-4 flex flex-col items-center gap-4 rounded-md border-2 border-gray-300 py-12"
-    >
-      <h1 className="text-center text-2xl font-bold md:text-3xl">
-        Hi{" "}
-        {isLoaded ? (
-          <span className="text-yellow-500">{user?.firstName}</span>
-        ) : (
-          <RectangleSkeleton classes="w-20" />
-        )}
-        😄! What do you want to study?
-      </h1>
+    <Card className="w-full">
+      <form
+        onSubmit={handleSubmit}
+        className="my-4 flex flex-col items-center gap-4 rounded-md py-12"
+      >
+        <h1 className="mx-4 text-center text-2xl font-bold md:text-3xl">
+          Hi{" "}
+          {isLoaded ? (
+            <span className="text-yellow-500">{user?.firstName}</span>
+          ) : (
+            <RectangleSkeleton classes="w-20" />
+          )}
+          😄! What do you want to study?
+        </h1>
 
-      <Input
-        name="topic"
-        placeholder="E.g: Programming Languages"
-        classes="py-2 px-4 md:w-1/4 w-3/4"
-        value={topic}
-        onChange={(e) => setTopic(e.target.value)}
-        error={error}
-      />
-      {!isFetching ? (
-        <Button type="submit" classes="py-2 px-6">
-          Continue
-        </Button>
-      ) : (
-        <Spinner classes="size-6" />
-      )}
-    </form>
+        <Input
+          className="w-56 border-2 border-gray-400 px-4 py-2 md:w-96"
+          name="topic"
+          center={true}
+          placeholder="E.g: Programming Languages"
+          value={topic}
+          onChange={(e) => setTopic(e.target.value)}
+          error={error}
+        />
+        {!isFetching ? (
+          <Button type="submit" classes="py-2 px-6">
+            Continue
+          </Button>
+        ) : (
+          <Spinner classes="size-6" />
+        )}
+      </form>
+    </Card>
   );
 }

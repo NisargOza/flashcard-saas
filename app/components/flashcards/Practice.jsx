@@ -4,15 +4,31 @@ import { Container } from "../ui/craft";
 import { titleCase } from "@/app/lib/helpers";
 import { FlashcardVerticalRotation } from "./Flashcard";
 import EmblaCarousel from "../carousel/EmblaCarousel";
-import { Check, X } from "lucide-react";
+import FlashcardsGrid from "./FlashcardsGrid";
+import { Button } from "../ui/button";
+import { Pencil, Trash } from "lucide-react";
+import Link from "next/link";
+import { VIEW_FLASHCARD_SETS_URL } from "@/app/lib/constants";
+import { deleteFlashcardSet } from "@/app/lib/firebase";
+import { useUser } from "@clerk/nextjs";
+import { useRouter } from "next/navigation";
 
 const OPTIONS = { axis: "y" };
 
 export default function Practice({ title, flashcards }) {
+  const [isDeleting, setIsDeleting] = React.useState(false);
+  const { user } = useUser();
+  const router = useRouter();
   const SLIDES = flashcards.map((flashcard, index) => {
     const { front, back } = flashcard;
     return <FlashcardVerticalRotation key={index} front={front} back={back} />;
   });
+
+  async function handleDelete() {
+    setIsDeleting(true);
+    await deleteFlashcardSet(user?.primaryEmailAddress.emailAddress, title);
+    router.push(VIEW_FLASHCARD_SETS_URL);
+  }
 
   return (
     <Container className="min-h-screen">
@@ -20,6 +36,26 @@ export default function Practice({ title, flashcards }) {
         <h1 className="mb-4 text-3xl font-bold">{titleCase(title)}</h1>
         <EmblaCarousel slides={SLIDES} options={OPTIONS} />
       </div>
+      <div className="flex flex-row items-center justify-between">
+        <h1 className="my-8 text-3xl font-bold">Terms ({flashcards.length})</h1>
+        <div className="flex flex-row gap-2">
+          <Link
+            className="flex items-center rounded-md bg-gray-700 bg-inherit p-2 align-middle text-white hover:bg-gray-800"
+            href={`${VIEW_FLASHCARD_SETS_URL}/edit/${title}`}
+          >
+            <Pencil />
+          </Link>
+          <Button
+            disabled={isDeleting}
+            variant="destructive"
+            onClick={handleDelete}
+            className="flex items-center rounded-md bg-inherit bg-red-500 p-2 align-middle text-white hover:bg-red-600"
+          >
+            <Trash />
+          </Button>
+        </div>
+      </div>
+      <FlashcardsGrid flashcards={flashcards} />
     </Container>
   );
 }

@@ -48,6 +48,7 @@ export async function getCollection(email, collectionName) {
 
 // Save a collection of flashcards for a user
 export async function saveCollection(email, collectionName, flashcards) {
+  const lowerCaseCollectionName = collectionName.toLowerCase();
   try {
     const userDocRef = doc(collection(db, "users"), email);
     const userDocSnap = await getDoc(userDocRef);
@@ -59,19 +60,19 @@ export async function saveCollection(email, collectionName, flashcards) {
       const userData = userDocSnap.data();
       const updatedSets = [
         ...(userData.flashcardSets || []),
-        { name: collectionName },
+        { name: lowerCaseCollectionName },
       ];
       batch.update(userDocRef, { flashcardSets: updatedSets });
     } else {
       // User document doesn't exist, create a new one with flashcardSets array
       batch.set(userDocRef, {
-        flashcardSets: [{ name: collectionName }],
+        flashcardSets: [{ name: lowerCaseCollectionName }],
       });
     }
 
     const setDocRef = doc(
       collection(userDocRef, "flashcardSets"),
-      collectionName
+      lowerCaseCollectionName
     );
     // Create or update the flashcard set document
     batch.set(setDocRef, { flashcards });

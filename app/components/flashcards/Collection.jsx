@@ -64,7 +64,7 @@ export default function CollectionGetter({ onCancel, flashcards }) {
           error={error}
         >
           <Button
-            onSubmit={handleGenerateCollectionName}
+            onClick={handleGenerateCollectionName}
             className="absolute right-2 top-1/2 mx-1 h-fit w-fit -translate-y-1/2 transform bg-inherit p-1 hover:bg-gray-100"
           >
             {!isFetching ? (
@@ -76,10 +76,10 @@ export default function CollectionGetter({ onCancel, flashcards }) {
         </InputIcon>
       </div>
       <div className="flex w-full justify-end gap-2">
-        <Button onSubmit={onCancel} variant="secondary">
+        <Button onClick={onCancel} variant="secondary">
           Cancel
         </Button>
-        <Button onSubmit={handleSave} disabled={isFetching || isSaving}>
+        <Button onClick={handleSave} disabled={isFetching || isSaving}>
           Save
         </Button>
       </div>

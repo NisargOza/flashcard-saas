@@ -37,7 +37,7 @@ export const usePrevNextButtons = (emblaApi) => {
 };
 
 export const PrevButton = ({ children, isDisabled, ...props }) => {
-  const styles = `rounded-full border-2 border-gray-200 p-0 md:p-2 ${
+  const styles = `rounded-full border-2 border-gray-200 p-0 md:p-2 hover:bg-gray-200 ${
     isDisabled ? "text-gray-300" : "text-red-500"
   }`;
   return (
@@ -49,7 +49,7 @@ export const PrevButton = ({ children, isDisabled, ...props }) => {
 };
 
 export const NextButton = ({ children, isDisabled, ...props }) => {
-  const styles = `rounded-full border-2 border-gray-200 p-0 md:p-2 ${
+  const styles = `rounded-full border-2 border-gray-200 p-0 md:p-2 hover:bg-gray-200 ${
     isDisabled ? "text-gray-300" : "text-green-500"
   }`;
   return (
@@ -61,7 +61,7 @@ export const NextButton = ({ children, isDisabled, ...props }) => {
 };
 
 export const UndoButton = ({ children, isDisabled, ...props }) => {
-  const styles = `absolute left-0 rounded-full p-2 ${
+  const styles = `absolute left-0 rounded-full p-2 hover:bg-gray-200 ${
     isDisabled ? "text-gray-300" : "text-black"
   }`;
   return (

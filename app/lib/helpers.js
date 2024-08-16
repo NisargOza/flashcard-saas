@@ -9,3 +9,8 @@ export function titleCase(str) {
   // Directly return the joined string
   return splitStr.join(" ");
 }
+
+export function getRandomTerms(list) {
+  const randomIndex = Math.floor(Math.random() * list.length);
+  return list[randomIndex];
+}
