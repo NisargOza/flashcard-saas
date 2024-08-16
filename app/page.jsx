@@ -1,8 +1,8 @@
 'use client';
 
 import React from 'react';
-import Hero from './components/landingpage/hero';
-import Feature from './components/landingpage/features';
+import Hero from './components/landingpage/hero.jsx';
+import Feature from './components/landingpage/features.jsx';
 import CTA from './components/landingpage/CTA';
 
 const LandingPage = () => {
