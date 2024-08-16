@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import { VIEW_FLASHCARD_SETS_URL } from "@/app/lib/constants";
 import { deleteFlashcardSet, saveCollection } from "@/app/lib/firebase";
 import { useUser } from "@clerk/nextjs";
+import { Trash } from "lucide-react";
 
 export default function EditCards({ title, flashcards }) {
   const router = useRouter();
@@ -39,11 +40,22 @@ export default function EditCards({ title, flashcards }) {
     router.push(url);
   }
 
+  function handleDelete(index) {
+    const newFlashcards = [...flashcardSet.flashcards];
+    newFlashcards.splice(index, 1);
+    setFlashcardSet({ ...flashcardSet, flashcards: newFlashcards });
+  }
+
   const flashcardsElements = flashcardSet.flashcards.map((flashcard, index) => (
     <Card key={index} className="p-4">
-      <CardHeader className="text-xl font-bold">
-        {index + 1}
-        {". "}
+      <CardHeader className="flex flex-row items-center justify-between text-xl font-bold">
+        <span>
+          {index + 1}
+          {". "}
+        </span>
+        <Button onClick={() => handleDelete(index)} variant="destructive">
+          <Trash />
+        </Button>
       </CardHeader>
       <CardContent>
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
