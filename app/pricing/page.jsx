@@ -117,7 +117,7 @@ const CheckItem = ({ text }) => (
   </div>
 );
 
-export default function page() {
+export default function Page() {
   const [isYearly, setIsYearly] = useState(false);
   const togglePricingPeriod = (value) => setIsYearly(parseInt(value) === 1);
 
