@@ -1,9 +1,10 @@
-import Flashcards from '../../components/flashcards/Flashcards';
+import { Container } from "@/app/components/ui/craft";
+import Flashcards from "../../components/flashcards/Flashcards";
 
 export default async function FlashcardsPage() {
   return (
-    <main className="pt-24">
+    <Container>
       <Flashcards />
-    </main>
+    </Container>
   );
 }

@@ -1,10 +1,11 @@
-import Link from 'next/link';
+import Link from "next/link";
 
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight } from "lucide-react";
 
-import { Section, Container } from '@/components/craft';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
+import { Section, Container } from "@/app/components/ui/craft";
+import { Button } from "../ui/button";
+import { Badge } from "@/app/components/ui/badge";
+import { CREATE_FLASHCARDS_URL } from "@/app/lib/constants";
 
 const Hero = () => {
   return (
@@ -19,13 +20,13 @@ const Hero = () => {
         <h1 className="!mb-0 text-4xl md:text-5xl lg:text-6xl">
           What if creating flashcards was as easy as a click of a button?
         </h1>
-        <h3 className="rounded-md border bg-muted/50 p-4 text-muted-foreground font-thin text-xl md:text-2xl lg:text-3xl">
+        <h3 className="rounded-md border bg-muted/50 p-4 text-xl font-thin text-muted-foreground md:text-2xl lg:text-3xl">
           It is using Flashcard App. Based on your input, we generate flashcards
           to help you study quickly and effectively.
         </h3>
 
         <div className="flex gap-4">
-          <Link href="/signup">
+          <Link href={CREATE_FLASHCARDS_URL}>
             <Button>Get Started</Button>
           </Link>
           {/* Todo: make scroll down to the features and cta */}

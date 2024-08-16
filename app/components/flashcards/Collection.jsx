@@ -1,6 +1,7 @@
+"use client";
 import React, { useState } from "react";
 import { InputIcon } from "../Input";
-import { Button } from "../Buttons";
+import { Button } from "../ui/button";
 import { Spark, Spinner } from "../Icons";
 import { generateCollectionName } from "../../lib/http";
 import { collectionExists, saveCollection } from "../../lib/firebase";
@@ -64,28 +65,21 @@ export default function CollectionGetter({ onCancel, flashcards }) {
         >
           <Button
             onSubmit={handleGenerateCollectionName}
-            classes="absolute right-2 top-1/2 transform -translate-y-1/2 w-fit bg-inherit hover:bg-gray-100 p-1 mx-1"
+            className="absolute right-2 top-1/2 mx-1 h-fit w-fit -translate-y-1/2 transform bg-inherit p-1 hover:bg-gray-100"
           >
             {!isFetching ? (
               <Spark classes="hover:brightness-150" />
             ) : (
-              <Spinner classes="bg-gray-100 size-4" />
+              <Spinner classes="size-4" />
             )}
           </Button>
         </InputIcon>
       </div>
       <div className="flex w-full justify-end gap-2">
-        <Button
-          onSubmit={onCancel}
-          classes="p-2 text-center bg-gray-500 hover:bg-gray-700"
-        >
+        <Button onSubmit={onCancel} variant="secondary">
           Cancel
         </Button>
-        <Button
-          onSubmit={handleSave}
-          disabled={isFetching || isSaving}
-          classes="px-4 text-center"
-        >
+        <Button onSubmit={handleSave} disabled={isFetching || isSaving}>
           Save
         </Button>
       </div>
