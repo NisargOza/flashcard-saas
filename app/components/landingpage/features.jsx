@@ -1,6 +1,6 @@
 // Layout
-import { Section, Container } from "@/app/components/ui/craft";
-import Link from "next/link";
+import { Section, Container } from '@/components/craft';
+import Link from 'next/link';
 
 // Icons
 import {
@@ -8,38 +8,38 @@ import {
   BrainCircuit,
   GraduationCap,
   ArrowRight,
-} from "lucide-react";
+} from 'lucide-react';
 
 const featureText = [
   {
     icon: <BookText className="h-6 w-6" />,
-    title: "Create Flashcards with one click",
+    title: 'Create Flashcards with one click',
     description:
-      "All you need to do is input your text and we will generate flashcards for you.",
-    cta: "",
+      'All you need to do is input your text and we will generate flashcards for you.',
+    cta: '',
   },
   {
     icon: <BrainCircuit className="h-6 w-6" />,
-    title: "Create and store flashcard decks",
+    title: 'Create and store flashcard decks',
     description:
-      "Create and modify flashcard decks so you can study more effectively.",
-    cta: "",
+      'Create and modify flashcard decks so you can study more effectively.',
+    cta: '',
   },
 ];
 
 const singleFeatureText = [
   {
     icon: <GraduationCap className="h-6 w-6" />,
-    title: "Import flashcards",
+    title: 'Import flashcards',
     description:
-      "Import flashcards from other platforms and use artificial intelligence to improve their effectiveness and generate similar cards.",
-    cta: "",
+      'Import flashcards from other platforms and use artificial intelligence to improve their effectiveness and generate similar cards.',
+    cta: '',
   },
 ];
 
 const Feature = () => {
   return (
-    <Section className="mt-[-4rem]">
+    <Section>
       <Container className="not-prose">
         <div className="flex flex-col gap-6">
           <div className="mt-6 grid gap-6 md:mt-12 md:grid-cols-2">
