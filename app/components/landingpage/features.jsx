@@ -1,5 +1,5 @@
 // Layout
-import { Section, Container } from '@/components/craft';
+import { Section, Container } from '@/app/components/ui/craft';
 import Link from 'next/link';
 
 // Icons
