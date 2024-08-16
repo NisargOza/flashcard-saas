@@ -1,14 +1,14 @@
-import React from "react";
-import { Button } from "../ui/button";
+import React from 'react';
+import { Button } from '../ui/button';
 import {
   CREATE_FLASHCARDS_URL,
   VIEW_FLASHCARD_SETS_URL,
-} from "../../lib/constants";
-import Link from "next/link";
-import { titleCase } from "../../lib/helpers";
-import { currentUser } from "@clerk/nextjs/server";
-import { getFlashcardSets } from "../../lib/firebase";
-import { Eye, Plus } from "lucide-react";
+} from '../../lib/constants';
+import Link from 'next/link';
+import { titleCase } from '../../lib/helpers';
+import { currentUser } from '@clerk/nextjs/server';
+import { getFlashcardSets } from '../../lib/firebase';
+import { Eye, Plus } from 'lucide-react';
 
 export default async function CardSets() {
   const user = await currentUser();
@@ -38,8 +38,9 @@ export default async function CardSets() {
         const title = titleCase(flashcardSet.id);
         const questions = flashcardSet.flashcards.length;
         return (
-          <div
+          <Link
             key={flashcardSet.id}
+            href={`${VIEW_FLASHCARD_SETS_URL}/${flashcardSet.id}`}
             className="flex w-full flex-col gap-4 rounded-md border-b-2 bg-gray-200 p-4 shadow-md hover:border-gray-600"
           >
             <div className="flex items-start justify-between gap-4 align-middle">
@@ -47,24 +48,13 @@ export default async function CardSets() {
               <h1 className="text-xl font-bold text-gray-600 md:text-2xl">
                 {title}
               </h1>
-
-              {/* View Button*/}
-              <Link
-                className="text-md rounded-md bg-inherit p-2 hover:bg-gray-700 hover:text-white md:border-2"
-                href={`${VIEW_FLASHCARD_SETS_URL}/${flashcardSet.id}`}
-              >
-                <span className="hidden h-full w-full md:block">View</span>
-                <span className="md:hidden">
-                  <Eye className="size-6" />
-                </span>
-              </Link>
             </div>
 
             {/* Question */}
             <div className="w-fit rounded-full bg-zinc-400 px-2 text-sm text-white">
               {questions} questions
             </div>
-          </div>
+          </Link>
         );
       })}
     </div>
