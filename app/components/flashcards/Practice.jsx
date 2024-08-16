@@ -40,7 +40,7 @@ export default function Practice({ title, flashcards }) {
         <h1 className="my-8 text-3xl font-bold">Terms ({flashcards.length})</h1>
         <div className="flex flex-row gap-2">
           <Link
-            className="flex items-center rounded-md bg-gray-700 bg-inherit p-2 align-middle text-white hover:bg-gray-800"
+            className="flex items-center rounded-md bg-gray-700 p-2 align-middle text-white hover:bg-gray-800"
             href={`${VIEW_FLASHCARD_SETS_URL}/edit/${title}`}
           >
             <Pencil />
@@ -49,7 +49,7 @@ export default function Practice({ title, flashcards }) {
             disabled={isDeleting}
             variant="destructive"
             onClick={handleDelete}
-            className="flex items-center rounded-md bg-inherit bg-red-500 p-2 align-middle text-white hover:bg-red-600"
+            className="flex items-center rounded-md bg-red-500 p-2 align-middle text-white hover:bg-red-600"
           >
             <Trash />
           </Button>

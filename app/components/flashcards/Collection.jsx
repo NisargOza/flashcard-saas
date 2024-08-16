@@ -6,8 +6,11 @@ import { Spark, Spinner } from "../Icons";
 import { generateCollectionName } from "../../lib/http";
 import { collectionExists, saveCollection } from "../../lib/firebase";
 import { useUser } from "@clerk/nextjs";
+import { useRouter } from "next/navigation";
+import { VIEW_FLASHCARD_SETS_URL } from "@/app/lib/constants";
 
 export default function CollectionGetter({ onCancel, flashcards }) {
+  const router = useRouter();
   const [isFetching, setIsFetching] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
   const [name, setName] = useState("");
@@ -50,6 +53,8 @@ export default function CollectionGetter({ onCancel, flashcards }) {
     }
 
     setIsSaving(false);
+    onCancel();
+    router.push(VIEW_FLASHCARD_SETS_URL);
   }
 
   return (
@@ -83,9 +88,9 @@ export default function CollectionGetter({ onCancel, flashcards }) {
           Save
         </Button>
       </div>
-      {success && (
+      {/* {success && (
         <div className="text-center text-green-500">Collection saved!</div>
-      )}
+      )} */}
     </div>
   );
 }
