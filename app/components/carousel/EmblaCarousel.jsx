@@ -5,6 +5,7 @@ import {
   NextButton,
   UndoButton,
   usePrevNextButtons,
+  ResetButton,
 } from "./EmblaCarouselArrowButtons";
 import useEmblaCarousel from "embla-carousel-react";
 import Image from "next/image";
@@ -39,6 +40,10 @@ const EmblaCarousel = (props) => {
     setDisplayImage(true);
     setImageKey((prevKey) => prevKey + 1);
     onNextButtonClick();
+  }
+
+  function resetCarousel() {
+    emblaApi.scrollTo(0);
   }
 
   useEffect(() => {
@@ -78,7 +83,13 @@ const EmblaCarousel = (props) => {
       </div>
 
       <div className="relative mx-0 mt-4 md:mx-8">
-        <UndoButton onClick={onPrevButtonClick} isDisabled={prevBtnDisabled} />
+        <div className="absolute left-0 flex flex-row items-center">
+          <UndoButton
+            onClick={onPrevButtonClick}
+            isDisabled={prevBtnDisabled}
+          />
+          <ResetButton onClick={resetCarousel} />
+        </div>
         <div className="flex items-center justify-center gap-4">
           <PrevButton onClick={handleIncorrect} isDisabled={nextBtnDisabled} />
           <div className="w-14 text-center">

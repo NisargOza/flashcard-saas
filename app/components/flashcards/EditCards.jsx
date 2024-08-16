@@ -49,7 +49,7 @@ export default function EditCards({ title, flashcards }) {
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
           <div className="text-left text-lg">
             <textarea
-              className="w-full resize-none overflow-hidden rounded-none border-b-2 border-gray-700"
+              className="w-full resize-none overflow-hidden rounded-lg border border-gray-700 p-2"
               value={flashcard.front}
               rows={1}
               onChange={(e) => {
@@ -70,7 +70,7 @@ export default function EditCards({ title, flashcards }) {
 
           <div className="text-left text-lg">
             <textarea
-              className="w-full resize-y rounded-none border-b-2 border-gray-700 p-2"
+              className="w-full resize-y rounded-lg border border-gray-700 p-2"
               value={flashcard.back}
               rows={3}
               onChange={(e) => {
@@ -115,7 +115,7 @@ export default function EditCards({ title, flashcards }) {
                   setFlashcardSet({ ...flashcardSet, id: e.target.value })
                 }
               />
-              <div className="text-base">TITLE</div>
+              <div className="my-4 text-base">TITLE</div>
             </h1>
           </div>
 
