@@ -95,7 +95,7 @@ const EmblaCarousel = (props) => {
             <ResetButton onClick={resetCarousel} />
           </Tooltip>
         </div>
-        <div className="flex items-center justify-center gap-4">
+        <div className="flex items-center justify-end gap-4 md:justify-center">
           <PrevButton onClick={handleIncorrect} isDisabled={nextBtnDisabled} />
           <div className="w-14 text-center">
             {selectedIndex + 1} / {slides.length}

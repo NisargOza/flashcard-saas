@@ -48,13 +48,13 @@ export default function Practice({ title, flashcards }) {
             </Link>
           </Tooltip>
 
-          <AlertDialogComp onDelete={handleDelete}>
-            <Tooltip content="Delete">
+          <Tooltip content="Delete">
+            <AlertDialogComp onDelete={handleDelete}>
               <Button variant="destructive" className="p-2">
                 <Trash />
               </Button>
-            </Tooltip>
-          </AlertDialogComp>
+            </AlertDialogComp>
+          </Tooltip>
         </div>
       </div>
       <FlashcardsGrid flashcards={flashcards} />
