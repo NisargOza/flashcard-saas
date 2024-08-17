@@ -9,6 +9,7 @@ import { VIEW_FLASHCARD_SETS_URL } from "@/app/lib/constants";
 import { deleteFlashcardSet, saveCollection } from "@/app/lib/firebase";
 import { useUser } from "@clerk/nextjs";
 import { Trash } from "lucide-react";
+import { Textarea } from "../ui/textarea";
 
 export default function EditCards({ title, flashcards }) {
   const router = useRouter();
@@ -64,7 +65,7 @@ export default function EditCards({ title, flashcards }) {
       <CardContent>
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
           <div className="text-left text-lg">
-            <textarea
+            <Textarea
               className="w-full resize-none overflow-hidden rounded-lg border border-gray-700 p-2"
               value={flashcard.front}
               rows={1}
@@ -85,7 +86,7 @@ export default function EditCards({ title, flashcards }) {
           </div>
 
           <div className="text-left text-lg">
-            <textarea
+            <Textarea
               className="w-full resize-y rounded-lg border border-gray-700 p-2"
               value={flashcard.back}
               rows={3}
