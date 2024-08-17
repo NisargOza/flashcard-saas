@@ -1,14 +1,14 @@
-import React from 'react';
-import { Button } from '../ui/button';
+import React from "react";
+import { Button } from "../ui/button";
 import {
   CREATE_FLASHCARDS_URL,
   VIEW_FLASHCARD_SETS_URL,
-} from '../../lib/constants';
-import Link from 'next/link';
-import { titleCase } from '../../lib/helpers';
-import { currentUser } from '@clerk/nextjs/server';
-import { getFlashcardSets } from '../../lib/firebase';
-import { Eye, Plus } from 'lucide-react';
+} from "../../lib/constants";
+import Link from "next/link";
+import { titleCase } from "../../lib/helpers";
+import { currentUser } from "@clerk/nextjs/server";
+import { getFlashcardSets } from "../../lib/firebase";
+import { Eye, Plus } from "lucide-react";
 
 export default async function CardSets() {
   const user = await currentUser();
