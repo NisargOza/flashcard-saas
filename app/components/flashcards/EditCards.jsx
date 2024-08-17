@@ -53,7 +53,11 @@ export default function EditCards({ title, flashcards }) {
           {index + 1}
           {". "}
         </span>
-        <Button onClick={() => handleDelete(index)} variant="destructive">
+        <Button
+          onClick={() => handleDelete(index)}
+          variant="destructive"
+          className="p-2"
+        >
           <Trash />
         </Button>
       </CardHeader>
