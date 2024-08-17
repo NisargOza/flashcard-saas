@@ -13,7 +13,7 @@ function ContactForm() {
     return <p>Your message has been sent successfully</p>;
   }
   return (
-    <form onSubmit={handleSubmit} className="grid gap-3 w-96">
+    <form onSubmit={handleSubmit} className="grid gap-3 w-[90%] md:w-96">
       <div className="grid w-full max-w-sm items-center gap-1.5">
         <Label htmlFor="email">Email</Label>
         <Input type="email" id="email" name="email" placeholder="Email" />
