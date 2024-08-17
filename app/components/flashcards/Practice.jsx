@@ -12,18 +12,12 @@ import { VIEW_FLASHCARD_SETS_URL } from "@/app/lib/constants";
 import { deleteFlashcardSet } from "@/app/lib/firebase";
 import { useUser } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "../ui/tooltip";
+import Tooltip from "../Tooltip";
 import AlertDialogComp from "../ui/AlertDialog";
 
 const OPTIONS = { axis: "y" };
 
 export default function Practice({ title, flashcards }) {
-  const [isDeleting, setIsDeleting] = React.useState(false);
   const { user } = useUser();
   const router = useRouter();
   const SLIDES = flashcards.map((flashcard, index) => {
@@ -32,7 +26,6 @@ export default function Practice({ title, flashcards }) {
   });
 
   async function handleDelete() {
-    setIsDeleting(true);
     await deleteFlashcardSet(user?.primaryEmailAddress.emailAddress, title);
     router.push(VIEW_FLASHCARD_SETS_URL);
   }
@@ -46,26 +39,21 @@ export default function Practice({ title, flashcards }) {
       <div className="flex flex-row items-center justify-between">
         <h1 className="my-8 text-3xl font-bold">Terms ({flashcards.length})</h1>
         <div className="flex flex-row gap-2">
-          <TooltipProvider>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Link
-                  className="flex items-center rounded-md bg-gray-700 p-2 text-white hover:bg-gray-800"
-                  href={`${VIEW_FLASHCARD_SETS_URL}/edit/${title}`}
-                >
-                  <Pencil />
-                </Link>
-              </TooltipTrigger>
-              <TooltipContent>
-                <p>Edit set</p>
-              </TooltipContent>
-            </Tooltip>
-          </TooltipProvider>
+          <Tooltip content="Edit">
+            <Link
+              className="flex items-center rounded-md bg-gray-700 p-2 text-white hover:bg-gray-800"
+              href={`${VIEW_FLASHCARD_SETS_URL}/edit/${title}`}
+            >
+              <Pencil />
+            </Link>
+          </Tooltip>
 
           <AlertDialogComp onDelete={handleDelete}>
-            <Button variant="destructive" className="p-2">
-              <Trash />
-            </Button>
+            <Tooltip content="Delete">
+              <Button variant="destructive" className="p-2">
+                <Trash />
+              </Button>
+            </Tooltip>
           </AlertDialogComp>
         </div>
       </div>

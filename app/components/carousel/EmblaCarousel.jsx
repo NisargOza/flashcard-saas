@@ -9,6 +9,7 @@ import {
 } from "./EmblaCarouselArrowButtons";
 import useEmblaCarousel from "embla-carousel-react";
 import Image from "next/image";
+import Tooltip from "../Tooltip";
 import { CORRECT_IMAGE_URL, INCORRECT_IMAGE_URL } from "@/app/lib/constants";
 
 const EmblaCarousel = (props) => {
@@ -84,11 +85,15 @@ const EmblaCarousel = (props) => {
 
       <div className="relative mx-0 mt-4 md:mx-8">
         <div className="absolute left-0 flex flex-row items-center">
-          <UndoButton
-            onClick={onPrevButtonClick}
-            isDisabled={prevBtnDisabled}
-          />
-          <ResetButton onClick={resetCarousel} />
+          <Tooltip content="Undo">
+            <UndoButton
+              onClick={onPrevButtonClick}
+              isDisabled={prevBtnDisabled}
+            />
+          </Tooltip>
+          <Tooltip content="Reset">
+            <ResetButton onClick={resetCarousel} />
+          </Tooltip>
         </div>
         <div className="flex items-center justify-center gap-4">
           <PrevButton onClick={handleIncorrect} isDisabled={nextBtnDisabled} />
