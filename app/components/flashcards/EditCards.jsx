@@ -68,7 +68,6 @@ export default function EditCards({ title, flashcards }) {
             <Textarea
               className="w-full resize-none overflow-hidden rounded-lg border border-gray-700 p-2"
               value={flashcard.front}
-              rows={1}
               onChange={(e) => {
                 const newFlashcards = [...flashcardSet.flashcards];
                 newFlashcards[index].front = e.target.value;
@@ -89,7 +88,6 @@ export default function EditCards({ title, flashcards }) {
             <Textarea
               className="w-full resize-y rounded-lg border border-gray-700 p-2"
               value={flashcard.back}
-              rows={3}
               onChange={(e) => {
                 const newFlashcards = [...flashcardSet.flashcards];
                 newFlashcards[index].back = e.target.value;
