@@ -18,6 +18,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "../ui/tooltip";
+import AlertDialogComp from "../ui/AlertDialog";
 
 const OPTIONS = { axis: "y" };
 
@@ -49,7 +50,7 @@ export default function Practice({ title, flashcards }) {
             <Tooltip>
               <TooltipTrigger asChild>
                 <Link
-                  className="flex items-center rounded-md bg-gray-700 p-2 align-middle text-white hover:bg-gray-800"
+                  className="flex items-center rounded-md bg-gray-700 p-2 text-white hover:bg-gray-800"
                   href={`${VIEW_FLASHCARD_SETS_URL}/edit/${title}`}
                 >
                   <Pencil />
@@ -61,23 +62,11 @@ export default function Practice({ title, flashcards }) {
             </Tooltip>
           </TooltipProvider>
 
-          <TooltipProvider>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Button
-                  disabled={isDeleting}
-                  variant="destructive"
-                  onClick={handleDelete}
-                  className="flex items-center rounded-md bg-red-500 p-2 align-middle text-white hover:bg-red-600"
-                >
-                  <Trash />
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent>
-                <p>Delete Set</p>
-              </TooltipContent>
-            </Tooltip>
-          </TooltipProvider>
+          <AlertDialogComp onDelete={handleDelete}>
+            <Button variant="destructive" className="p-2">
+              <Trash />
+            </Button>
+          </AlertDialogComp>
         </div>
       </div>
       <FlashcardsGrid flashcards={flashcards} />
