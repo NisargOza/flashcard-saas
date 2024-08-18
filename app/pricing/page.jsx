@@ -1,5 +1,6 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
 import { Tabs, TabsList, TabsTrigger } from '../components/ui/tabs';
 import {
   Card,
@@ -13,6 +14,7 @@ import { CheckCircle2 } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import React, { useState } from 'react';
 import { cn } from '../lib/utils';
+import getStripe from '../checkout/utils/get-stripe';
 
 const PricingHeader = ({ title, subtitle }) => (
   <section className="text-center">
@@ -45,6 +47,7 @@ const PricingCard = ({
   actionLabel,
   popular,
   exclusive,
+  onClick, // Add this prop
 }) => (
   <Card
     className={cn(
@@ -102,7 +105,10 @@ const PricingCard = ({
       </CardContent>
     </div>
     <CardFooter className="mt-2">
-      <Button className="relative inline-flex w-full items-center justify-center rounded-md bg-black text-white dark:bg-white px-6 font-medium  dark:text-black transition-colors focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50">
+      <Button
+        className="relative inline-flex w-full items-center justify-center rounded-md bg-black text-white dark:bg-white px-6 font-medium dark:text-black transition-colors focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50"
+        onClick={() => onClick()} // Ensure onClick is a function call
+      >
         <div className="absolute -inset-0.5 -z-10 rounded-lg bg-gradient-to-b from-[#c7d2fe] to-[#8678f9] opacity-75 blur" />
         {actionLabel}
       </Button>
@@ -118,8 +124,43 @@ const CheckItem = ({ text }) => (
 );
 
 export default function Page() {
+  const router = useRouter();
   const [isYearly, setIsYearly] = useState(false);
+
   const togglePricingPeriod = (value) => setIsYearly(parseInt(value) === 1);
+
+  const handleSubmit = async (plan) => {
+    try {
+      const checkoutSession = await fetch('/api/checkout_sessions', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'origin': 'http://localhost:3000',
+        },
+        body: JSON.stringify({ plan }), // Send plan data
+      });
+
+      const checkoutSessionJson = await checkoutSession.json();
+
+      if (checkoutSession.status === 500) {
+        console.error(checkoutSession.message);
+        return;
+      }
+
+      const stripe = await getStripe();
+      const { error } = await stripe.redirectToCheckout({
+        sessionId: checkoutSessionJson.id,
+      });
+
+      if (error) {
+        console.warn(error.message);
+      } else {
+        router.push('/success');
+      }
+    } catch (error) {
+      console.error('Error during checkout:', error);
+    }
+  };
 
   const plans = [
     {
@@ -129,6 +170,7 @@ export default function Page() {
       description: 'Essential features you need to get started',
       features: ['Feature Number 1', 'Feature Number 2', 'Feature Number 3'],
       actionLabel: 'Get Started',
+      id: 'basic',
     },
     {
       title: 'Pro',
@@ -138,6 +180,7 @@ export default function Page() {
       features: ['Feature Number 1', 'Feature Number 2', 'Feature Number 3'],
       actionLabel: 'Get Started',
       popular: true,
+      id: 'pro',
     },
     {
       title: 'Enterprise',
@@ -151,8 +194,10 @@ export default function Page() {
       ],
       actionLabel: 'Contact Sales',
       exclusive: true,
+      id: 'enterprise',
     },
   ];
+
   return (
     <div className="py-8 pt-32">
       <PricingHeader
@@ -161,9 +206,14 @@ export default function Page() {
       />
       <PricingSwitch onSwitch={togglePricingPeriod} />
       <section className="flex flex-col sm:flex-row sm:flex-wrap justify-center gap-8 mt-8">
-        {plans.map((plan) => {
-          return <PricingCard key={plan.title} {...plan} isYearly={isYearly} />;
-        })}
+        {plans.map((plan) => (
+          <PricingCard
+            key={plan.id}
+            {...plan}
+            isYearly={isYearly}
+            onClick={() => handleSubmit({ ...plan, isYearly })} // Pass plan data and isYearly status
+          />
+        ))}
       </section>
     </div>
   );
