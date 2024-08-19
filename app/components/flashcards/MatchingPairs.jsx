@@ -76,7 +76,7 @@ export default function MatchingPairs({ flashcards }) {
       {showModel && (
         <Modal>
           <div className="p-4">
-            <h1 className="text-2xl font-bold">Congratulations!</h1>
+            <h1 className="text-2xl font-bold">Congratulations 🎉!</h1>
             <p className="mt-4 text-gray-500">You have matched all the pairs</p>
             <div className="mt-4 flex justify-end gap-2">
               <Button onClick={() => setShowModel(false)}>Close</Button>
